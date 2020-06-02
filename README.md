@@ -1,4 +1,4 @@
-# my qmk keymap
+# My crkbd keymap
 This repository contains my custom crkbd keymap of QMK.
 
 The keymap works with core [QMK source codes](https://github.com/qmk/qmk_firmware).
