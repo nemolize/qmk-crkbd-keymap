@@ -1,5 +1,5 @@
 # My crkbd keymap
-This repository contains my custom crkbd keymap of QMK.
+This repository contains my custom crkbd keymap of [QMK](https://qmk.fm/).
 
 The keymap works with core [QMK source codes](https://github.com/qmk/qmk_firmware).
 
