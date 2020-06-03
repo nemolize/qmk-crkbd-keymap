@@ -279,10 +279,16 @@ bool isControl(void) {
  return get_mods() & (MOD_BIT(KC_LCTRL) | MOD_BIT(KC_RCTRL));
 }
 
-#define modified(mod_bit) (get_mods() & (mod_bit))
+#define modified(mask) (get_mods() & (mask))
 
 void registerOrUnRegister(uint16_t keycode, bool isRegister){
   isRegister ? register_code(keycode) : unregister_code(keycode);
+}
+
+void register_code_with_mods(uint16_t keycode, bool isRegister, uint8_t mods) {
+    add_mods(mods);
+    isRegister ? register_code(keycode) : unregister_code(keycode);
+    del_mods(mods);
 }
 
 bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
@@ -453,6 +459,30 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
           return false;
         }
         break;
+    case KC_UP:
+        if (IS_LAYER_ON(L_XLM)) {
+            register_code_with_mods(KC_F14, isPressed, MOD_BIT(KC_LSHIFT));
+            return false;
+        }
+        break;
+    case KC_DOWN:
+        if (IS_LAYER_ON(L_XLM)) {
+            register_code_with_mods(KC_F15, isPressed, MOD_BIT(KC_LSHIFT));
+            return false;
+        }
+        break;
+      case KC_LEFT:
+          if (IS_LAYER_ON(L_XLM)) {
+              register_code_with_mods(KC_F16, isPressed, MOD_BIT(KC_LSHIFT));
+              return false;
+          }
+          break;
+      case KC_RIGHT:
+          if (IS_LAYER_ON(L_XLM)) {
+              register_code_with_mods(KC_F17, isPressed, MOD_BIT(KC_LSHIFT));
+              return false;
+          }
+          break;
   }
   return true;
 }
