@@ -27,6 +27,7 @@ extern "C" {
 #include "debug.h"
 
 #include "./fixed_point_number.h"
+#include "./vector_2d.h"
 
 void pointing_device_task(void);
 void pointing_device_set_report(report_mouse_t newMouseReport);
@@ -41,11 +42,6 @@ void mousekey_send(void);
 #ifdef __cplusplus
 }
 #endif
-
-struct Vector {
-  FIXED_POINT_NUMBER x, y;
-  Vector() : x(0), y(0) {}
-};
 
 struct PhysicsConfig {
   FIXED_POINT_NUMBER force, mass, friction, dtDivMath;
