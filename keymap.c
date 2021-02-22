@@ -8,6 +8,9 @@
   #include "ssd1306.h"
 #endif
 
+void mousekey_on(uint8_t code);
+void mousekey_off(uint8_t code);
+
 extern keymap_config_t keymap_config;
 
 #ifdef RGBLIGHT_ENABLE
@@ -483,6 +486,18 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
               return false;
           }
           break;
+      case KC_MS_U:
+      case KC_MS_D:
+      case KC_MS_L:
+      case KC_MS_R:
+      case KC_BTN1:
+      case KC_BTN2:
+      case KC_BTN3:
+      case KC_WH_U:
+      case KC_WH_D:
+          if (isPressed) mousekey_on(keycode);
+          else mousekey_off(keycode);
+          return false;
   }
   return true;
 }
@@ -490,7 +505,7 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
   debug_enable=true;
-  debug_matrix=true;
+//  debug_matrix=true;
   //debug_keyboard=true;
-  //debug_mouse=true;
+  debug_mouse=true;
 }
