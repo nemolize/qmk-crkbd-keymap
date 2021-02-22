@@ -26,6 +26,7 @@ extern "C" {
 #include "timer.h"
 #include "debug.h"
 
+#include "./fixed_point_number.h"
 
 void pointing_device_task(void);
 void pointing_device_set_report(report_mouse_t newMouseReport);
@@ -40,14 +41,6 @@ void mousekey_send(void);
 #ifdef __cplusplus
 }
 #endif
-
-typedef int32_t FIXED_POINT_NUMBER;
-
-#define FIXED_POINT_SIZE 14
-#define FLOAT_TO_FPN(fval) ((FIXED_POINT_NUMBER)round(fval * (1 << FIXED_POINT_SIZE)))
-#define FPN_TO_INT(fval) (fval >> FIXED_POINT_SIZE)
-#define FPN_MUL(fval1, fval2) ((fval1 * fval2) >> FIXED_POINT_SIZE)
-#define FPN_DIV(fval1, fval2) ((fval1 << FIXED_POINT_SIZE) / fval2)
 
 struct Vector {
   FIXED_POINT_NUMBER x, y;
