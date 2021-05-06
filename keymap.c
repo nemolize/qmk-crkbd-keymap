@@ -141,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_XRR] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        RST, XXXXX, XXXXX,    UP, XXXXX, XXXXX,                  XXXXX,  KP_7,  KP_8,  KP_9, XXXXX, XXXXX,\
+        RST, XXXXX, XXXXX,    UP, XXXXX, XXXXX,                   NLCK,  KP_7,  KP_8,  KP_9, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LTOG,  LHUI,  LEFT,  DOWN, RIGHT, XXXXX,                   BSPC,  KP_4,  KP_5,  KP_6, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
