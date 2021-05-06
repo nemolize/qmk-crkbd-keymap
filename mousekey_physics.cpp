@@ -89,14 +89,23 @@ void mousekey_off(uint8_t code) {
   else if (code == KC_MS_BTN5) mouse_report.buttons &= ~MOUSE_BTN5;
 }
 
-void mousekey_debug(void) {
-  if (!debug_mouse) return;
-  print("mousekey [btn|x y v h](rep/acl): [");
-  print_hex8(mouse_report.buttons); print("|");
-  print_decs(mouse_report.x); print(" ");
-  print_decs(mouse_report.y); print(" ");
-  print_decs(mouse_report.v); print(" ");
-  print_decs(mouse_report.h); print("](");
+static void mousekey_debug(void) {
+    if (!debug_mouse) return;
+    print("mousekey [btn|x y v h](rep/acl): [");
+    print_hex8(mouse_report.buttons);
+    print("|");
+    print_decs(mouse_report.x);
+    print(" ");
+    print_decs(mouse_report.y);
+    print(" ");
+    print_decs(mouse_report.v);
+    print(" ");
+    print_decs(mouse_report.h);
+    print("](");
+    print_dec(mousekey_repeat);
+    print("/");
+    print_dec(mousekey_accel);
+    print(")\n");
 }
 
 void mousekey_send(void) {
