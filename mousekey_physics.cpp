@@ -92,7 +92,7 @@ void mousekey_off(uint8_t code) {
 void mousekey_debug(void) {
   if (!debug_mouse) return;
   print("mousekey [btn|x y v h](rep/acl): [");
-  phex(mouse_report.buttons); print("|");
+  print_hex8(mouse_report.buttons); print("|");
   print_decs(mouse_report.x); print(" ");
   print_decs(mouse_report.y); print(" ");
   print_decs(mouse_report.v); print(" ");
