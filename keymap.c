@@ -20,6 +20,14 @@ extern rgblight_config_t rgblight_config;
 
 extern uint8_t is_master;
 
+typedef union {
+    uint32_t raw;
+    struct {
+        bool is_pc:1;
+    };
+} user_config_t;
+user_config_t user_config;
+
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -45,6 +53,7 @@ enum custom_keycodes {
   XRR,
   BACKLIT,
   RGBRST,
+  MODE
 };
 
 #define KC______ KC_TRNS
@@ -77,6 +86,7 @@ enum custom_keycodes {
 #define KC_PU KC_PGUP
 #define KC_PD KC_PGDN
 #define KC_MCTL LCA(KC_F14)
+#define KC_MODE MODE
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_DEFAULT] = LAYOUT_kc( \
@@ -157,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LTOG,  LHUI,LS(CL),LS(CD),LS(CR), XXXXX,                  XXXXX, XXXXX,LS(END),LS(PD), XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX,  MODE, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   _____, _____, _____,   _____, _____, _____ \
                               //`--------------------'  `--------------------'
@@ -228,7 +238,7 @@ void matrix_render_user(struct CharacterMatrix *matrix) {
   if (is_master) {
     // If you want to change the display of OLED, you need to change here
 //    matrix_write_ln(matrix, read_keylog());
-    matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
+    matrix_write_ln(matrix, read_mode_icon(user_config.is_pc));
 //    matrix_write_ln(matrix, read_host_led_state());
     matrix_write_ln(matrix, read_layer_state());
 //    matrix_write_ln(matrix, read_timelog());
@@ -498,11 +508,18 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
           if (isPressed) mousekey_on(keycode);
           else mousekey_off(keycode);
           return false;
+      case KC_MODE:
+          if(isPressed) {
+              user_config.is_pc = user_config.is_pc ? false : true;
+              eeconfig_update_user(user_config.raw);
+          }
+          return false;
   }
   return true;
 }
 
 void keyboard_post_init_user(void) {
+  user_config.raw = eeconfig_read_user();
   // Customise these values to desired behaviour
   debug_enable=true;
 //  debug_matrix=true;
