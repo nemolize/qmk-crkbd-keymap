@@ -316,14 +316,8 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     case KC_XLL:
-      if (isOneShot()) {
-          add_mods(MOD_BIT(KC_LALT));
-          registerOrUnRegister(KC_F13, true);
-          registerOrUnRegister(KC_F13, false);
-          del_mods(MOD_BIT(KC_LALT));
-      } else {
-          registerOrUnRegister(KC_LALT, isPressed);
-      }
+      if (!isPressed && isOneShot()) registerOrUnRegister(KC_LALT, false);
+      else registerOrUnRegister(KC_LALT, isPressed);
       return false;
     case KC_XLM:
       record->event.pressed ? layer_on_if_need(L_XLM) : layer_off_if_need(L_XLM);
