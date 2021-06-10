@@ -85,7 +85,7 @@ enum custom_keycodes {
 #define KC_CR KC_RIGHT
 #define KC_PU KC_PGUP
 #define KC_PD KC_PGDN
-#define KC_MCTL LCA(KC_F14)
+#define KC_MCTL CTL_T(KC_F14)
 #define KC_MODE MODE
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
