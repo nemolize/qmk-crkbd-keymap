@@ -151,11 +151,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [L_XRR] = LAYOUT_kc( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        RST, XXXXX, XXXXX,    UP, XXXXX, XXXXX,                   NLCK,  KP_7,  KP_8,  KP_9, XXXXX, XXXXX,\
+        RST, XXXXX, XXXXX,    UP, XXXXX, XXXXX,                   NLCK,     7,     8,     9, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LTOG,  LHUI,  LEFT,  DOWN, RIGHT, XXXXX,                   BSPC,  KP_4,  KP_5,  KP_6, XXXXX, XXXXX,\
+       LTOG,  LHUI,  LEFT,  DOWN, RIGHT, XXXXX,                   BSPC,     4,     5,     6, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,  LHUD,   DOT,  LVAD, XXXXX, XXXXX,                   KP_0,  KP_1,  KP_2,  KP_3, XXXXX, XXXXX,\
+       LSFT,  LHUD,   DOT,  LVAD, XXXXX, XXXXX,                      0,     1,     2,     3, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   _____, _____, _____,   _____, _____, _____ \
                               //`--------------------'  `--------------------'
@@ -443,22 +443,22 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
           registerOrUnRegister(KC_PIPE, false);
         }
         break;
-    case KC_KP_4:
-    case KC_KP_6:
+    case KC_4:
+    case KC_6:
         if (isControl()) {
           add_mods(MOD_BIT(KC_LALT)); add_mods(MOD_BIT(KC_LCTRL));
           registerOrUnRegister(keycode, isPressed);
           del_mods(MOD_BIT(KC_LALT));
           return false;
         }
-    case KC_KP_0:
-    case KC_KP_1:
-    case KC_KP_2:
-    case KC_KP_3:
-    case KC_KP_5:
-    case KC_KP_7:
-    case KC_KP_8:
-    case KC_KP_9:
+    case KC_0:
+    case KC_1:
+    case KC_2:
+    case KC_3:
+    case KC_5:
+    case KC_7:
+    case KC_8:
+    case KC_9:
         if (IS_LAYER_ON(L_XLM)) {
           add_mods(MOD_BIT(KC_LALT)|MOD_BIT(KC_LCTRL));
           registerOrUnRegister(keycode, isPressed);
