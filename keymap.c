@@ -337,6 +337,11 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
       return true;
     case KC_XLR:
       record->event.pressed ? layer_on_if_need(L_XLR) : layer_off_if_need(L_XLR);
+      if(!user_config.is_pc && !isPressed && isOneShot()) {
+        register_code(KC_LANG2);
+        unregister_code(KC_LANG2);
+        return false;
+      }
       break;
     case KC_XRM:
       record->event.pressed ? layer_on_if_need(L_XRM) : layer_off_if_need(L_XRM);
@@ -350,6 +355,11 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
       break;
     case KC_XRL:
         record->event.pressed ? layer_on_if_need(L_XRL) : layer_off_if_need(L_XRL);
+        if(!user_config.is_pc && !isPressed && isOneShot()) {
+            register_code(KC_LANG1);
+            unregister_code(KC_LANG1);
+            return false;
+        }
         break;
     case RGB_MOD:
       #ifdef RGBLIGHT_ENABLE
