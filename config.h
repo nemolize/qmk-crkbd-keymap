@@ -57,7 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_VAL_STEP 17
 
 #define MOUSEKEY_FRAMERATE 144
-#define MOUSEKEY_CURSOR_FORCE 300
+#define MOUSEKEY_CURSOR_FORCE 288
 #define MOUSEKEY_CURSOR_MASS 1
 #define MOUSEKEY_CURSOR_FRICTION 24
 #define MOUSEKEY_WHEEL_FRAMERATE 24
