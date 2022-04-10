@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        MCTL, XXXXX,  MS_L,  MS_D,  MS_R, MS_BTN3,                QUOTE,  LPRN,  LCBR,  RCBR,   EQL,  UNDS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,   BTN2,  WH_D, WH_U,  BTN1, XXXXX,                     AT,   DQT,  PLUS,  HASH,  EXLM, XXXXX,\
+       LSFT,   BTN2,  WH_U, WH_D,  BTN1, XXXXX,                     AT,   DQT,  PLUS,  HASH,  EXLM, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   _____, _____, _____,   _____, _____, _____ \
                               //`--------------------'  `--------------------'
@@ -507,11 +507,23 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
       case KC_BTN1:
       case KC_BTN2:
       case KC_BTN3:
-      case KC_WH_U:
-      case KC_WH_D:
           if (isPressed) mousekey_on(keycode);
           else mousekey_off(keycode);
           return false;
+      case KC_WH_U:
+          {
+              uint16_t keycode = user_config.is_pc ? KC_WH_U : KC_WH_D;
+              if (isPressed) mousekey_on(keycode);
+              else mousekey_off(keycode);
+              return false;
+          }
+      case KC_WH_D:
+          {
+              uint16_t keycode = user_config.is_pc ? KC_WH_D : KC_WH_U;
+              if (isPressed) mousekey_on(keycode);
+              else mousekey_off(keycode);
+              return false;
+          }
       case KC_MODE:
           if(isPressed) {
               user_config.is_pc = user_config.is_pc ? false : true;
