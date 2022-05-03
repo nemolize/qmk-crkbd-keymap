@@ -328,16 +328,9 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
       record->event.pressed ? layer_on_if_need(L_XLM) : layer_off_if_need(L_XLM);
       update_tri_layer_RGB(L_XRM, L_XLM, L_XLM_XRM);
 
-      if( !isPressed && isOneShot() ) {
-          if(IS_LAYER_ON(L_XRM)) {
-              register_code(KC_LANG2);
-              unregister_code(KC_LANG2);
-              return false;
-          } else if( !layer_state_is(L_XLM) ) {
-              register_code(KC_SPACE);
-              unregister_code(KC_SPACE);
-              return false;
-          }
+      if( !isPressed && isOneShot() && !layer_state_is(L_XLM) ) {
+          registerUnRegister(KC_SPACE);
+          return false;
       }
       return true;
     case KC_XLR:
@@ -347,12 +340,6 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
     case KC_XRM:
       record->event.pressed ? layer_on_if_need(L_XRM) : layer_off_if_need(L_XRM);
       update_tri_layer_RGB(L_XRM, L_XLM, L_XLM_XRM);
-
-      if(IS_LAYER_ON(L_XLM) && !isPressed && isOneShot()){
-         register_code(KC_LANG1);
-         unregister_code(KC_LANG1);
-         return false;
-      }
       break;
     case KC_XRL:
         record->event.pressed ? layer_on_if_need(L_XRL) : layer_off_if_need(L_XRL);
