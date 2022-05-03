@@ -27,9 +27,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #if !(MASTER_LEFT || MASTER_RIGHT || EE_HANDS)
 #define MASTER_LEFT
+//#define MASTER_RIGHT
+//#define EE_HANDS
 #endif
-// #define MASTER_RIGHT
-// #define EE_HANDS
 
 #define SSD1306OLED
 
