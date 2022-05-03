@@ -294,6 +294,11 @@ bool isControl(void) {
 
 #define modified(mask) (get_mods() & (mask))
 
+void registerUnRegister(uint16_t keycode){
+  register_code(keycode);
+  unregister_code(keycode);
+}
+
 void registerOrUnRegister(uint16_t keycode, bool isRegister){
   isRegister ? register_code(keycode) : unregister_code(keycode);
 }
@@ -337,12 +342,8 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
       return true;
     case KC_XLR:
       record->event.pressed ? layer_on_if_need(L_XLR) : layer_off_if_need(L_XLR);
-      if(!user_config.is_pc && !isPressed && isOneShot()) {
-        register_code(KC_LANG2);
-        unregister_code(KC_LANG2);
-        return false;
-      }
-      break;
+      if(!isPressed && isOneShot()) registerUnRegister(user_config.is_pc ? KC_MHEN : KC_LANG2);
+      return false;
     case KC_XRM:
       record->event.pressed ? layer_on_if_need(L_XRM) : layer_off_if_need(L_XRM);
       update_tri_layer_RGB(L_XRM, L_XLM, L_XLM_XRM);
@@ -355,12 +356,8 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
       break;
     case KC_XRL:
         record->event.pressed ? layer_on_if_need(L_XRL) : layer_off_if_need(L_XRL);
-        if(!user_config.is_pc && !isPressed && isOneShot()) {
-            register_code(KC_LANG1);
-            unregister_code(KC_LANG1);
-            return false;
-        }
-        break;
+        if(!isPressed && isOneShot()) registerUnRegister(user_config.is_pc ? KC_HENK : KC_LANG1);
+        return false;
     case RGB_MOD:
       #ifdef RGBLIGHT_ENABLE
         if (record->event.pressed) {
