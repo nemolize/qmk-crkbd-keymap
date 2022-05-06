@@ -61,8 +61,8 @@ enum custom_keycodes {
 
 #define KC_XLL XLL //LALT_T(NF13)
 #define KC_XLM XLM //LT(L_XLM, KC_SPACE)
-#define KC_XLR MOD_LGUI
-#define KC_XRL MOD_RGUI
+#define KC_XLR KC_LGUI
+#define KC_XRL KC_RGUI
 #define KC_XRM XRM
 #define KC_XRR   LT(L_XRR, KC_F7)
 #define KC_RST   RESET
