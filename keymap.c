@@ -61,8 +61,8 @@ enum custom_keycodes {
 
 #define KC_XLL XLL //LALT_T(NF13)
 #define KC_XLM XLM //LT(L_XLM, KC_SPACE)
-#define KC_XLR MT(MOD_LGUI, KC_MHEN)
-#define KC_XRL MT(MOD_RGUI, KC_HENK)
+#define KC_XLR MOD_LGUI
+#define KC_XRL MOD_RGUI
 #define KC_XRM XRM
 #define KC_XRR   LT(L_XRR, KC_F7)
 #define KC_RST   RESET
@@ -76,8 +76,6 @@ enum custom_keycodes {
 #define KC_LVAD  RGB_VAD
 #define KC_LMOD  RGB_MOD
 #define KC_CTLTB CTL_T(KC_TAB)
-#define KC_CMD_S CTL_T(KC_TAB)
-#define KC_LG(kc) LGUI(KC_##kc)
 #define KC_LS(kc) LSFT(KC_##kc)
 #define KC_CU KC_UP
 #define KC_CD KC_DOWN
@@ -335,7 +333,8 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
       return true;
     case KC_XLR:
       record->event.pressed ? layer_on_if_need(L_XLR) : layer_off_if_need(L_XLR);
-      if(!isPressed && isOneShot()) registerUnRegister(user_config.is_pc ? KC_MHEN : KC_LANG2);
+      if(isPressed || !isOneShot()) break;
+      registerUnRegister(user_config.is_pc ? KC_MHEN : KC_LANG2);
       return false;
     case KC_XRM:
       record->event.pressed ? layer_on_if_need(L_XRM) : layer_off_if_need(L_XRM);
@@ -343,7 +342,8 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
       break;
     case KC_XRL:
         record->event.pressed ? layer_on_if_need(L_XRL) : layer_off_if_need(L_XRL);
-        if(!isPressed && isOneShot()) registerUnRegister(user_config.is_pc ? KC_HENK : KC_LANG1);
+        if(isPressed || !isOneShot()) break;
+        registerUnRegister(user_config.is_pc ? KC_HENK : KC_LANG1);
         return false;
     case RGB_MOD:
       #ifdef RGBLIGHT_ENABLE
