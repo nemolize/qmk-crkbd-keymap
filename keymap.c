@@ -61,8 +61,8 @@ enum custom_keycodes {
 
 #define KC_XLL XLL //LALT_T(NF13)
 #define KC_XLM XLM //LT(L_XLM, KC_SPACE)
-#define KC_XLR KC_LGUI
-#define KC_XRL KC_RGUI
+#define KC_XLR MT(MOD_LGUI, KC_MHEN)
+#define KC_XRL MT(MOD_RGUI, KC_HENK)
 #define KC_XRM XRM
 #define KC_XRR   LT(L_XRR, KC_F7)
 #define KC_RST   RESET
@@ -331,20 +331,10 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
           return false;
       }
       return true;
-    case KC_XLR:
-      record->event.pressed ? layer_on_if_need(L_XLR) : layer_off_if_need(L_XLR);
-      if(isPressed || !isOneShot()) break;
-      registerUnRegister(user_config.is_pc ? KC_MHEN : KC_LANG2);
-      return false;
     case KC_XRM:
       record->event.pressed ? layer_on_if_need(L_XRM) : layer_off_if_need(L_XRM);
       update_tri_layer_RGB(L_XRM, L_XLM, L_XLM_XRM);
       break;
-    case KC_XRL:
-        record->event.pressed ? layer_on_if_need(L_XRL) : layer_off_if_need(L_XRL);
-        if(isPressed || !isOneShot()) break;
-        registerUnRegister(user_config.is_pc ? KC_HENK : KC_LANG1);
-        return false;
     case RGB_MOD:
       #ifdef RGBLIGHT_ENABLE
         if (record->event.pressed) {
