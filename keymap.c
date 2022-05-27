@@ -331,6 +331,34 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
           return false;
       }
       return true;
+    case KC_XLR:
+        if( !user_config.is_pc ) {
+            if(isPressed) {
+                add_mods(MOD_BIT(KC_RGUI));
+            }
+            else {
+                del_mods(MOD_BIT(KC_RGUI));
+                if(isOneShot()) {
+                    registerUnRegister(KC_LANG2);
+                }
+          }
+          return false;
+      }
+      return true;
+    case KC_XRL:
+        if( !user_config.is_pc ) {
+            if(isPressed) {
+                add_mods(MOD_BIT(KC_RGUI));
+            }
+            else {
+                del_mods(MOD_BIT(KC_RGUI));
+                if(isOneShot()) {
+                    registerUnRegister(KC_LANG1);
+                }
+          }
+          return false;
+      }
+      return true;
     case KC_XRM:
       record->event.pressed ? layer_on_if_need(L_XRM) : layer_off_if_need(L_XRM);
       update_tri_layer_RGB(L_XRM, L_XLM, L_XLM_XRM);
