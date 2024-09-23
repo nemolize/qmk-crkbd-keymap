@@ -4,7 +4,7 @@ This repository contains my custom crkbd keymap of [QMK](https://qmk.fm/).
 The keymap works with core [QMK source codes](https://github.com/qmk/qmk_firmware).
 
 # Pre requirements
-- [QMK Installation](https://beta.docs.qmk.fm/tutorial/newbs_getting_started)
+- [QMK Installation](https://docs.qmk.fm/newbs_getting_started)
 
 # Installation
 ```shell script
