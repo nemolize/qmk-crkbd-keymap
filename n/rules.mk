@@ -6,6 +6,7 @@
 BOOTMAGIC_ENABLE = no       # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE = no        # Mouse keys(+4700)
 POINTING_DEVICE_ENABLE = yes
+POINTING_DEVICE_DRIVER = custom
 EXTRAKEY_ENABLE = no        # Audio control and System control(+450)
 CONSOLE_ENABLE = no         # Console for debug(+400)
 COMMAND_ENABLE = no         # Commands for debug and configuration
@@ -22,12 +23,12 @@ SWAP_HANDS_ENABLE = no      # Enable one-hand typing
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 
 # If you want to change the display of OLED, you need to change here
-SRC +=  ./lib/glcdfont.c \
-        ./lib/layer_state_reader.c \
-        ./lib/logo_reader.c \
-        ./lib/mode_icon_reader.c \
+SRC +=  ./lib/layer_state_reader.c \
         ./lib/rgb_state_reader.c \
         ./lib/host_led_state_reader.c \
         ./lib/timelogger.c \
         mousekey_physics.cpp
+#		 ./lib/glcdfont.c \
+#        ./lib/logo_reader.c \
+#        ./lib/mode_icon_reader.c \
 #        ./lib/keylogger.c \

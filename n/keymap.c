@@ -59,13 +59,15 @@ enum custom_keycodes {
 #define KC______ KC_TRNS
 #define KC_XXXXX KC_NO
 
+#define JP_MHEN KC_INT5 // Muhenkan (無変換)
+#define JP_HENK KC_INT4 // Henkan (変換)
+
 #define KC_XLL XLL //LALT_T(NF13)
 #define KC_XLM XLM //LT(L_XLM, KC_SPACE)
-#define KC_XLR MT(MOD_LGUI, KC_MHEN)
-#define KC_XRL MT(MOD_RGUI, KC_HENK)
+#define KC_XLR MT(MOD_LGUI, JP_MHEN)
+#define KC_XRL MT(MOD_RGUI, JP_HENK)
 #define KC_XRM XRM
 #define KC_XRR   LT(L_XRR, KC_F7)
-#define KC_RST   RESET
 #define KC_LRST  RGBRST
 #define KC_LTOG  RGB_TOG
 #define KC_LHUI  RGB_HUI
@@ -87,87 +89,87 @@ enum custom_keycodes {
 #define KC_MODE MODE
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [L_DEFAULT] = LAYOUT_kc( \
+  [L_DEFAULT] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC,     X,     W,     L,     Z,     J,                      Q,     G,     H,     C,     Y,  SLSH,\
+        KC_ESC,     KC_X,     KC_W,     KC_L,     KC_Z,     KC_J,                      KC_Q,     KC_G,     KC_H,     KC_C,     KC_Y,  KC_SLSH,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB,     O,     I,     E,     A,     F,                      B,     T,     R,     N,     S,  MINS,\
+      KC_CTLTB,     KC_O,     KC_I,     KC_E,     KC_A,     KC_F,                      KC_B,     KC_T,     KC_R,     KC_N,     KC_S,  KC_MINS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,  SCLN,   DOT,     K,     U,    AT,                      D,     M,     P,     V,  COMM,  RSFT,\
+       KC_LSFT,  KC_SCLN,   KC_DOT,     KC_K,     KC_U,    KC_AT,                      KC_D,     KC_M,     KC_P,     KC_V,  KC_COMM,  KC_RSFT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                     XLL,   XLM,   XLR,      XRL,   XRM,   XRR \
                               //`--------------------'  `--------------------'
   ),
 
-  [L_XLM] = LAYOUT_kc( \
+  [L_XLM] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC, XXXXX, XXXXX,  MS_U, XXXXX, XXXXX,                  XXXXX,  AMPR,  RPRN,   GRV,  ASTR,  QUES,\
+        KC_ESC, KC_XXXXX, KC_XXXXX,  KC_MS_U, KC_XXXXX, KC_XXXXX,                  KC_XXXXX,  KC_AMPR,  KC_RPRN,   KC_GRV,  KC_ASTR,  KC_QUES,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       MCTL, XXXXX,  MS_L,  MS_D,  MS_R, MS_BTN3,                QUOTE,  LPRN,  LCBR,  RCBR,   EQL,  UNDS,\
+       KC_MCTL, KC_XXXXX,  KC_MS_L,  KC_MS_D,  KC_MS_R, KC_MS_BTN3,                KC_QUOTE,  KC_LPRN,  KC_LCBR,  KC_RCBR,   KC_EQL,  KC_UNDS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,   BTN2,  WH_U, WH_D,  BTN1, XXXXX,                     AT,   DQT,  PLUS,  HASH,  EXLM, XXXXX,\
+       KC_LSFT,   KC_BTN2,  KC_WH_U, KC_WH_D,  KC_BTN1, KC_XXXXX,                     KC_AT,   KC_DQT,  KC_PLUS,  KC_HASH,  KC_EXLM, KC_XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,   _____, _____, _____ \
+                                  _______, _______, _______,   _______, _______, _______ \
                               //`--------------------'  `--------------------'
   ),
 
-  [L_XLR] = LAYOUT_kc( \
+  [L_XLR] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      _____, _____, _____, _____, _____, _____,                 _____, _____, _____, _____, _____, _____,\
+      _______, _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______, _______,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____, _____, _____, _____, _____, _____,                 _____, _____, _____, _____, _____, _____,\
+      _______, _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______, _______,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____, _____, _____, _____, _____, _____,                 _____, _____, _____, _____, _____, _____,\
+      _______, _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______, _______,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,   _____, _____, _____ \
+                                  _______, _______, _______,   _______, _______, _______ \
                               //`--------------------'  `--------------------'
   ),
 
-  [L_XRL] = LAYOUT_kc( \
+  [L_XRL] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
-      _____, _____, _____, _____, _____, _____,                 _____, _____, _____, _____, _____, _____,\
+      _______, _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______, _______,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____, _____, _____, _____, _____, _____,                 _____, _____, _____, _____, _____, _____,\
+      _______, _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______, _______,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____, _____, _____, _____, _____, _____,                 _____, _____, _____, _____, _____, _____,\
+      _______, _______, _______, _______, _______, _______,                 _______, _______, _______, _______, _______, _______,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,   _____, _____, _____ \
+                                  _______, _______, _______,   _______, _______, _______ \
                               //`--------------------'  `--------------------'
   ),
 
-  [L_XRM] = LAYOUT_kc( \
+  [L_XRM] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        ESC, XXXXX, XXXXX,    UP, XXXXX, XXXXX,                   XXXXX,  AMPR,  HOME, PGUP, XXXXX,  BSPC,\
+        KC_ESC, KC_XXXXX, KC_XXXXX,    KC_UP, KC_XXXXX, KC_XXXXX,                   KC_XXXXX,  KC_AMPR,  KC_HOME, KC_PGUP, KC_XXXXX,  KC_BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB, XXXXX,  LEFT,  DOWN, RIGHT, XXXXX,                   BSPC,   DEL,   END,  PGDN,   ENT,   GRV,\
+      KC_CTLTB, KC_XXXXX,  KC_LEFT,  KC_DOWN, KC_RIGHT, KC_XXXXX,                   KC_BSPC,   KC_DEL,   KC_END,  KC_PGDN,   KC_ENT,   KC_GRV,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT, XXXXX,  COLN, XXXXX, XXXXX, XXXXX,                   UNDS,  PLUS,  LBRC,  RBRC,  LSFT,  TILD,\
+       KC_LSFT, KC_XXXXX,  KC_COLN, KC_XXXXX, KC_XXXXX, KC_XXXXX,                   KC_UNDS,  KC_PLUS,  KC_LBRC,  KC_RBRC,  KC_LSFT,  KC_TILD,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,   _____, _____, _____ \
+                                  _______, _______, _______,   _______, _______, _______ \
                               //`--------------------'  `--------------------'
   ),
 
-  [L_XRR] = LAYOUT_kc( \
+  [L_XRR] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        RST, XXXXX, XXXXX,    UP, XXXXX, XXXXX,                   NLCK,     7,     8,     9, XXXXX, XXXXX,\
+        QK_BOOT, KC_XXXXX, KC_XXXXX,    KC_UP, KC_XXXXX, KC_XXXXX,                   KC_NUM,     KC_7,     KC_8,     KC_9, KC_XXXXX, KC_XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LTOG,  LHUI,  LEFT,  DOWN, RIGHT, XXXXX,                   BSPC,     4,     5,     6, XXXXX, XXXXX,\
+       KC_LTOG,  KC_LHUI,  KC_LEFT,  KC_DOWN, KC_RIGHT, KC_XXXXX,                   KC_BSPC,     KC_4,     KC_5,     KC_6, KC_XXXXX, KC_XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,  LHUD,   DOT,  LVAD, XXXXX, XXXXX,                      0,     1,     2,     3, XXXXX, XXXXX,\
+       KC_LSFT,  KC_LHUD,   KC_DOT,  KC_LVAD, KC_XXXXX, KC_XXXXX,                      KC_0,     KC_1,     KC_2,     KC_3, KC_XXXXX, KC_XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,   _____, _____, _____ \
+                                  _______, _______, _______,   _______, _______, _______ \
                               //`--------------------'  `--------------------'
   ),
 
-  [L_XLM_XRM] = LAYOUT_kc( \
+  [L_XLM_XRM] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------.                ,-----------------------------------------.
-        RST,  LRST, XXXXX,LS(CU), XXXXX, XXXXX,                  XXXXX, XXXXX,LS(HOME),LS(PU), XXXXX, XXXXX,\
+        QK_BOOT,  KC_LRST, KC_XXXXX,LSFT(KC_CU), KC_XXXXX, KC_XXXXX,                  KC_XXXXX, KC_XXXXX,LSFT(KC_HOME),LSFT(KC_PU), KC_XXXXX, KC_XXXXX,\
       //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LTOG,  LHUI,LS(CL),LS(CD),LS(CR), XXXXX,                  XXXXX, XXXXX,LS(END),LS(PD), XXXXX, XXXXX,\
+       KC_LTOG,  KC_LHUI,LSFT(KC_CL),LSFT(KC_CD),LSFT(KC_CR), KC_XXXXX,                  KC_XXXXX, KC_XXXXX,LSFT(KC_END),LSFT(KC_PD), KC_XXXXX, KC_XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX,  MODE, XXXXX, XXXXX, XXXXX, XXXXX,\
+       KC_LMOD,  KC_LHUD,  KC_LSAD,  KC_LVAD, KC_XXXXX, KC_XXXXX,                  KC_XXXXX,  KC_MODE, KC_XXXXX, KC_XXXXX, KC_XXXXX, KC_XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, _____,   _____, _____, _____ \
+                                  _______, _______, _______,   _______, _______, _______ \
                               //`--------------------'  `--------------------'
   ),
 };
@@ -283,11 +285,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool isShifted(void) {
- return get_mods() & (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT));
+ return get_mods() & (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT));
 }
 
 bool isControl(void) {
- return get_mods() & (MOD_BIT(KC_LCTRL) | MOD_BIT(KC_RCTRL));
+ return get_mods() & (MOD_BIT(KC_LCTL) | MOD_BIT(KC_RCTL));
 }
 
 #define modified(mask) (get_mods() & (mask))
@@ -339,7 +341,7 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
             else {
                 del_mods(MOD_BIT(KC_RGUI));
                 if(isOneShot()) {
-                    registerUnRegister(KC_LANG2);
+                    registerUnRegister(KC_LNG2);
                 }
           }
           return false;
@@ -353,7 +355,7 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
             else {
                 del_mods(MOD_BIT(KC_RGUI));
                 if(isOneShot()) {
-                    registerUnRegister(KC_LANG1);
+                    registerUnRegister(KC_LNG1);
                 }
           }
           return false;
@@ -395,22 +397,22 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
     case KC_LCBR: // [
       if (isShifted() && isPressed) {
         isPressed ? del_mods(MOD_BIT(KC_LSFT)) : 0;
-        registerOrUnRegister(KC_LBRACKET, true);
+        registerOrUnRegister(KC_LBRC, true);
         add_mods(MOD_BIT(KC_LSFT));
         return false;
       } else {
-        registerOrUnRegister(KC_LBRACKET, false);
+        registerOrUnRegister(KC_LBRC, false);
       }
       break;
 
     case KC_RCBR: // ]
       if (isShifted() && isPressed) {
         isPressed ? del_mods(MOD_BIT(KC_LSFT)) : 0;
-        registerOrUnRegister(KC_RBRACKET, true);
+        registerOrUnRegister(KC_RBRC, true);
         add_mods(MOD_BIT(KC_LSFT));
         return false;
       } else {
-        registerOrUnRegister(KC_RBRACKET, false);
+        registerOrUnRegister(KC_RBRC, false);
       }
       break;
     case KC_QUOTE: // %
@@ -458,7 +460,7 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
     case KC_4:
     case KC_6:
         if (isControl()) {
-          add_mods(MOD_BIT(KC_LALT)); add_mods(MOD_BIT(KC_LCTRL));
+          add_mods(MOD_BIT(KC_LALT)); add_mods(MOD_BIT(KC_LCTL));
           registerOrUnRegister(keycode, isPressed);
           del_mods(MOD_BIT(KC_LALT));
           return false;
@@ -472,33 +474,33 @@ bool process_record_user_wrapped(uint16_t keycode, keyrecord_t *record) {
     case KC_8:
     case KC_9:
         if (IS_LAYER_ON(L_XLM)) {
-          add_mods(MOD_BIT(KC_LALT)|MOD_BIT(KC_LCTRL));
+          add_mods(MOD_BIT(KC_LALT)|MOD_BIT(KC_LCTL));
           registerOrUnRegister(keycode, isPressed);
-          del_mods(MOD_BIT(KC_LALT)|MOD_BIT(KC_LCTRL));
+          del_mods(MOD_BIT(KC_LALT)|MOD_BIT(KC_LCTL));
           return false;
         }
         break;
     case KC_UP:
         if (IS_LAYER_ON(L_XLM)) {
-            register_code_with_mods(KC_F14, isPressed, MOD_BIT(KC_LSHIFT));
+            register_code_with_mods(KC_F14, isPressed, MOD_BIT(KC_LSFT));
             return false;
         }
         break;
     case KC_DOWN:
         if (IS_LAYER_ON(L_XLM)) {
-            register_code_with_mods(KC_F15, isPressed, MOD_BIT(KC_LSHIFT));
+            register_code_with_mods(KC_F15, isPressed, MOD_BIT(KC_LSFT));
             return false;
         }
         break;
       case KC_LEFT:
           if (IS_LAYER_ON(L_XLM)) {
-              register_code_with_mods(KC_F16, isPressed, MOD_BIT(KC_LSHIFT));
+              register_code_with_mods(KC_F16, isPressed, MOD_BIT(KC_LSFT));
               return false;
           }
           break;
       case KC_RIGHT:
           if (IS_LAYER_ON(L_XLM)) {
-              register_code_with_mods(KC_F17, isPressed, MOD_BIT(KC_LSHIFT));
+              register_code_with_mods(KC_F17, isPressed, MOD_BIT(KC_LSFT));
               return false;
           }
           break;

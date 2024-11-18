@@ -58,35 +58,35 @@ void pointing_device_task(void) {
 }
 
 void mousekey_on(uint8_t code) {
-  if      (code == KC_MS_UP)       move_state.accel.y = -move.force;
-  else if (code == KC_MS_DOWN)     move_state.accel.y = move.force;
-  else if (code == KC_MS_LEFT)     move_state.accel.x = -move.force;
-  else if (code == KC_MS_RIGHT)    move_state.accel.x = move.force;
-  else if (code == KC_MS_WH_UP)    wheel_state.accel.y = wheel.force;
-  else if (code == KC_MS_WH_DOWN)  wheel_state.accel.y = -wheel.force;
-  else if (code == KC_MS_WH_LEFT)  wheel_state.accel.x = wheel.force;
-  else if (code == KC_MS_WH_RIGHT) wheel_state.accel.x = -wheel.force;
-  else if (code == KC_MS_BTN1)     mouse_report.buttons |= MOUSE_BTN1;
-  else if (code == KC_MS_BTN2)     mouse_report.buttons |= MOUSE_BTN2;
-  else if (code == KC_MS_BTN3)     mouse_report.buttons |= MOUSE_BTN3;
-  else if (code == KC_MS_BTN4)     mouse_report.buttons |= MOUSE_BTN4;
-  else if (code == KC_MS_BTN5)     mouse_report.buttons |= MOUSE_BTN5;
+  if      (code == MS_UP)       move_state.accel.y = -move.force;
+  else if (code == MS_DOWN)     move_state.accel.y = move.force;
+  else if (code == MS_LEFT)     move_state.accel.x = -move.force;
+  else if (code == MS_RGHT)    move_state.accel.x = move.force;
+  else if (code == MS_WHLU) wheel_state.accel.y = wheel.force;
+  else if (code == MS_WHLD) wheel_state.accel.y = -wheel.force;
+  else if (code == MS_WHLL) wheel_state.accel.x = wheel.force;
+  else if (code == MS_WHLR) wheel_state.accel.x = -wheel.force;
+  else if (code == MS_BTN1)     mouse_report.buttons |= MOUSE_BTN1;
+  else if (code == MS_BTN2)     mouse_report.buttons |= MOUSE_BTN2;
+  else if (code == MS_BTN3)     mouse_report.buttons |= MOUSE_BTN3;
+  else if (code == MS_BTN4)     mouse_report.buttons |= MOUSE_BTN4;
+  else if (code == MS_BTN5)     mouse_report.buttons |= MOUSE_BTN5;
 }
 
 void mousekey_off(uint8_t code) {
-  if      (code == KC_MS_UP       && move_state.accel.y < 0) move_state.accel.y = 0;
-  else if (code == KC_MS_DOWN     && move_state.accel.y > 0) move_state.accel.y = 0;
-  else if (code == KC_MS_LEFT     && move_state.accel.x < 0) move_state.accel.x = 0;
-  else if (code == KC_MS_RIGHT    && move_state.accel.x > 0) move_state.accel.x = 0;
-  else if (code == KC_MS_WH_UP    && wheel_state.accel.y > 0) wheel_state.accel.y = 0;
-  else if (code == KC_MS_WH_DOWN  && wheel_state.accel.y < 0) wheel_state.accel.y = 0;
-  else if (code == KC_MS_WH_LEFT  && wheel_state.accel.x < 0) wheel_state.accel.x = 0;
-  else if (code == KC_MS_WH_RIGHT && wheel_state.accel.x > 0) wheel_state.accel.x = 0;
-  else if (code == KC_MS_BTN1) mouse_report.buttons &= ~MOUSE_BTN1;
-  else if (code == KC_MS_BTN2) mouse_report.buttons &= ~MOUSE_BTN2;
-  else if (code == KC_MS_BTN3) mouse_report.buttons &= ~MOUSE_BTN3;
-  else if (code == KC_MS_BTN4) mouse_report.buttons &= ~MOUSE_BTN4;
-  else if (code == KC_MS_BTN5) mouse_report.buttons &= ~MOUSE_BTN5;
+  if      (code == MS_UP       && move_state.accel.y < 0) move_state.accel.y = 0;
+  else if (code == MS_DOWN     && move_state.accel.y > 0) move_state.accel.y = 0;
+  else if (code == MS_LEFT     && move_state.accel.x < 0) move_state.accel.x = 0;
+  else if (code == MS_RGHT    && move_state.accel.x > 0) move_state.accel.x = 0;
+  else if (code == MS_WHLU && wheel_state.accel.y > 0) wheel_state.accel.y = 0;
+  else if (code == MS_WHLD && wheel_state.accel.y < 0) wheel_state.accel.y = 0;
+  else if (code == MS_WHLL && wheel_state.accel.x < 0) wheel_state.accel.x = 0;
+  else if (code == MS_WHLR && wheel_state.accel.x > 0) wheel_state.accel.x = 0;
+  else if (code == MS_BTN1) mouse_report.buttons &= ~MOUSE_BTN1;
+  else if (code == MS_BTN2) mouse_report.buttons &= ~MOUSE_BTN2;
+  else if (code == MS_BTN3) mouse_report.buttons &= ~MOUSE_BTN3;
+  else if (code == MS_BTN4) mouse_report.buttons &= ~MOUSE_BTN4;
+  else if (code == MS_BTN5) mouse_report.buttons &= ~MOUSE_BTN5;
 }
 
 static void mousekey_debug(void) {
