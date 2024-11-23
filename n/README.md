@@ -15,8 +15,8 @@ git clone git@github.com:nemolize/qmk-crkbd-keymap.git n
 # Build
 ```shell script
 # left hand
-make EXTRAFLAGS=-DMASTER_LEFT crkbd:n  crkbd:n:avrdude
+make flash-left
 
 # right hand
-make EXTRAFLAGS=-DMASTER_RIGHT crkbd:n  crkbd:n:avrdude
+make flash-right
 ```
