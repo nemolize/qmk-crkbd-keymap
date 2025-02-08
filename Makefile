@@ -5,15 +5,15 @@ build:
 	@cd qmk_firmware && qmk compile -kb crkbd -km n
 
 flash-left:
-	@EXTRAFLAGS='-D MASTER_LEFT'
-	@make flash
+	@make flash EXTRAFLAGS='-D MASTER_LEFT'
 
 flash-right:
-	@EXTRAFLAGS='-D MASTER_RIGHT'
-	@make flash
+	@make flash EXTRAFLAGS='-D MASTER_RIGHT'
 
 flash:
 	@make init
+	@echo "Build & Flashing with EXTRAFLAGS='$(EXTRAFLAGS)'"
+	@export EXTRAFLAGS=$(EXTRAFLAGS)
 	@cd qmk_firmware && qmk flash -kb crkbd -km n
 
 init:
